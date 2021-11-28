@@ -1,4 +1,4 @@
-import api from "./util/axios"
+import api from "../util/axios"
 require('dotenv').config()
 
 interface props {

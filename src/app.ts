@@ -1,5 +1,4 @@
-// const lib = require('./convert_currency')
-import convert_currency from './convert_currency';
+import convert_currency from './service/convert_currency';
 import express from 'express';
 
 const app = express();
