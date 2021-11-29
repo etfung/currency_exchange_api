@@ -1,9 +1,7 @@
-
 # Currency Exchange Api
 
 
 An api that allows you to convert currency and see the historical timeline of currency
-
 
 
 ## Run Locally
@@ -24,6 +22,13 @@ Install dependencies
 
 ```bash
   npm install
+```
+
+Add .env file
+
+```bash
+  EXCHANGE_RATE_BASE_URL=BASE_URL
+  EXCHANGE_RATE_API_KEY=API_KEY
 ```
 
 Start the server
@@ -58,9 +63,9 @@ To turn off docker
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `from` | `string` | **Required**. |
-| `to` | `string` | **Required**. |
-| `amount` | `number` | **Required**. |
+| `exchange_to` | `string` | **Required** |
+| `amount` | `number` | **Required** |
+
 #### Exchange Rate Year-over-Year Change
 
 ```http
