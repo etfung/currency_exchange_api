@@ -10,12 +10,13 @@ app.get('/', (req, res) => {
     res.send('hello')
 })
 
-app.get('/convert', async (req, res, next) => {
+app.post('/convert', async (req, res, next) => {
     const { exchange_to, amount } = req.body
     if (exchange_to === undefined || amount === undefined) {
-        next('Please enter a value for exchange_to, amount')
+        res.status(400).send('Please enter a value for exchange_to, amount');
+
     } else if (!COUNTRY_CODE.includes(exchange_to)) {
-        next('Please enter a valid country code')
+        res.status(400).send('Please enter a valid country code');
     } else {
         const response = await convert_currency({ exchange_to, amount })
         res.send(response);

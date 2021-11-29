@@ -10,16 +10,31 @@ describe("Test the root path", () => {
 
 describe("Test convert route path", () => {
 
-  test("It should response 400", async () => {
-    const response = await request(app).get("/convert");
-    expect(response.statusCode).toBe(400);
+  test("It should response with an error country code message", async () => {
+    const response = await request(app)
+      .post("/convert")
+      .set('Content-Type', 'application/json')
+      .send({
+        "exchange_to": "SSS",
+        "amount": 100
+      });
+    expect(response.text).toBe('Please enter a valid country code');
+  });
+
+  test("It should response with error validation message", async () => {
+    const response = await request(app).post("/convert");
+    expect(response.text).toBe('Please enter a value for exchange_to, amount');
   });
 
   test("It should response 200", async () => {
     const response = await request(app)
-      .get("/convert?from='EUR'&to='HKD'&amount='20'")
-      .set('Content-Type', 'application/json');
+      .post("/convert")
+      .set('Content-Type', 'application/json')
+      .send({
+        "exchange_to": "HKD",
+        "amount": 100
+      });
 
-    expect(response.statusCode).toBe(400);
+    expect(response.statusCode).toBe(200)
   });
 })
