@@ -61,7 +61,6 @@ To turn off docker
 | `from` | `string` | **Required**. |
 | `to` | `string` | **Required**. |
 | `amount` | `number` | **Required**. |
-
 #### Exchange Rate Year-over-Year Change
 
 ```http
