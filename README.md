@@ -58,7 +58,7 @@ To turn off docker
 #### Convert currency
 
 ```http
-  GET /convert
+  POST /convert
 ```
 
 | Parameter | Type     | Description                |
@@ -69,7 +69,7 @@ To turn off docker
 #### Exchange Rate Year-over-Year Change
 
 ```http
-  GET /history
+  POST /history
 ```
 
 | Parameter | Type     | Description                       |
