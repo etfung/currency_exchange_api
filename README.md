@@ -58,10 +58,9 @@ To turn off docker
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `from` | `string` | **Required**. Your API key |
-| `to` | `string` | **Required**. Your API key |
-| `amount` | `number` | **Required**. Your API key |
-
+| `from` | `string` | **Required**. |
+| `to` | `string` | **Required**. |
+| `amount` | `number` | **Required**. |
 #### Exchange Rate Year-over-Year Change
 
 ```http
