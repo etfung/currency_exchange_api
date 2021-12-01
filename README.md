@@ -63,7 +63,7 @@ To turn off docker
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `exchange_to` | `string` | **Required** |
+| `exchange_to` | `string` | **Required** Valid country code |
 | `amount` | `number` | **Required** |
 
 #### Exchange Rate Year-over-Year Change
@@ -76,6 +76,8 @@ To turn off docker
 | :-------- | :------- | :-------------------------------- |
 | `start_date` | `string` | **Required**. format YYYY-MM-DD |
 | `end_date` | `string` | **Required**. format YYYY-MM-DD |
+| `data_type` | `daily`, `monthly`, `yearly` | **Required**. |
+| `exchange_to` | `string` | **Required**. Valid country code |
 
 
 
