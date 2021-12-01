@@ -1,6 +1,7 @@
-import convert_currency from './service/convert_currency';
+import { convert_currency, Year_over_year } from './service/index';
 import express from 'express';
 import { COUNTRY_CODE } from './constant/country_code';
+import dayjs from 'dayjs';
 
 const app = express();
 
@@ -21,6 +22,25 @@ app.post('/convert', async (req, res, next) => {
         const response = await convert_currency({ exchange_to, amount })
         res.send(response);
     }
+})
+
+app.post('/history', async (req, res, next) => {
+    const { start_date, end_date, data_type, exchange_to } = req.body
+    if (dayjs(start_date).isSameOrAfter(new Date()) || dayjs(end_date).isSameOrAfter(new Date())) {
+        res.status(400).send('Dates must not be greater than today');
+    } else if (!COUNTRY_CODE.includes(exchange_to)) {
+        res.status(400).send('Please enter a valid country code');
+    } else if (data_type !== "daily" && data_type !== "monthly" && data_type !== "yearly") {
+        res.status(400).send('Please enter a valid data type daily, monthly or yearly');
+    } else if (data_type === "daily" && dayjs(start_date).isSame(end_date, 'd') ||
+        data_type === 'monthly' && dayjs(start_date).isSame(end_date, 'M') ||
+        data_type === 'yearly' && dayjs(start_date).isSame(end_date, 'y')) {
+        res.status(400).send('Start date must not be greater than end date');
+    } else {
+        const response = await Year_over_year({ start_date, end_date, data_type, exchange_to })
+        res.send(response);
+    }
+
 })
 
 module.exports = app;

@@ -1,23 +1,11 @@
-import api from "../util/axios"
-require('dotenv').config()
-
+import fetch_data from "../util/fetch_data"
+import { ApiResponse, Data } from "../types/exchange_rate"
 interface Props {
   exchange_to: string
   amount: number
 }
 
-interface ApiResponse {
-  data: Data
-}
 
-interface Data {
-  success: boolean,
-  timestamp: number,
-  historical: boolean,
-  base: string,
-  date: string,
-  rates: Record<string, number>
-}
 
 const convert_currency = async ({ exchange_to, amount }: Props) => {
   try {
@@ -27,12 +15,7 @@ const convert_currency = async ({ exchange_to, amount }: Props) => {
     const capitalizedExchangeTo = exchange_to.toUpperCase()
     const currentDate = new Date()
     const formatCurrentDate = currentDate.toISOString().slice(0, 10)
-    const response: ApiResponse = await api.get(`${formatCurrentDate}?access_key=${process.env.EXCHANGE_RATE_API_KEY}&symbols=${capitalizedExchangeTo}`)
-    const data: Data = response.data
-
-    if (!data.success) {
-      throw new Error('Something went wrong, Try again later.')
-    }
+    const data: Data = await fetch_data({ formatCurrentDate, exchange_to: capitalizedExchangeTo })
 
     const rates = data.rates[capitalizedExchangeTo]
     const computeExchange = amount * rates
