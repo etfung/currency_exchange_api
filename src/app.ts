@@ -1,4 +1,4 @@
-import { convert_currency, Year_over_year } from './service/index';
+import { convert_currency, year_over_year } from './service/index';
 import express from 'express';
 import { COUNTRY_CODE } from './constant/country_code';
 import dayjs from 'dayjs';
@@ -37,10 +37,10 @@ app.post('/history', async (req, res, next) => {
         data_type === 'yearly' && dayjs(start_date).isSame(end_date, 'y')) {
         res.status(400).send('Start date must not be greater than end date');
     } else {
-        const response = await Year_over_year({ start_date, end_date, data_type, exchange_to })
+        const response = await year_over_year({ start_date, end_date, data_type, exchange_to })
         res.send(response);
     }
 
 })
 
-module.exports = app;
+export default app
