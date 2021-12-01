@@ -1,5 +1,5 @@
-const app = require('./app')
+import application from './app'
 
-app.listen(3000, () => {
-  console.log('The application is listening on port 3000!');
+application.listen(80, () => {
+  console.log('The application is listening on port 80!');
 })
