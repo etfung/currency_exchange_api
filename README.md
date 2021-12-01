@@ -90,3 +90,19 @@ To run tests, run the following command
   npm run test
 ```
 
+
+## Deployment Plan
+
+To deploy this on Heroku utilizing [heroku](https://devcenter.heroku.com/articles/container-registry-and-runtime)
+
+
+Build image 
+```bash
+  heroku container:push web
+```
+
+then push to release
+```bash
+    heroku container:release web
+```
+
